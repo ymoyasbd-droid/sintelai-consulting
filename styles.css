@@ -1,20 +1,22 @@
-/* Sintel AI · web corporativa
+/* Sintel AI · web corporativa (tema claro con zonas oscuras · 05/10/2026)
    Concepto: fondo noche con el teal de marca como único acento luminoso; columna editorial
    alineada a la izquierda, con la conversación del asistente como pieza central del hero. */
+/* Tema: claro por defecto; cabecera, portada (hero) y pie conservan el modo noche para dar contraste */
 :root {
-  /* Color: mismos tonos de la web actual (no cambiar) */
-  --bg: #050505;            /* hsl(0 0% 2%) */
-  --surface: #0d1513;       /* hsl(173 26% 7%) */
-  --surface-2: #17211f;     /* hsl(173 20% 12%) */
-  --line: #232e2c;          /* hsl(173 15% 16%) */
-  --fg: #ffffff;
-  --fg-soft: #b9c4c2;
-  --fg-muted: #8a9593;
-  --teal: #1ae0c5;          /* hsl(172 79% 49%) · primario */
-  --teal-deep: #14b8a3;     /* hsl(173 80% 40%) */
-  --sky: #2aa5f8;           /* hsl(204 95% 57%) · final de degradado */
-  --on-teal: #050505;
-  --warn: #f59e8b;
+  --bg: #ffffff;
+  --surface: #f8fafc;       /* Slate 50 */
+  --surface-2: #eef4f6;
+  --line: #d5dee6;
+  --fg: #0f172a;            /* Azul noche */
+  --fg-soft: #334155;
+  --fg-muted: #526176;
+  --teal: #0a7a6e;          /* teal de marca oscurecido para texto sobre claro (>=5:1) */
+  --teal-deep: #0d9488;
+  --sky: #2563eb;
+  --on-teal: #ffffff;
+  --warn: #b42318;
+  --shadow-card: 0 1px 3px rgba(15, 23, 42, 0.06);
+  --shadow-hover: 0 18px 36px -14px rgba(15, 23, 42, 0.22);
 
   /* Tipografía: la de la web actual + mono para datos */
   --font-display: "Outfit", system-ui, -apple-system, sans-serif;
@@ -32,8 +34,20 @@
   --radius-lg: 18px;
   --wrap: 1180px;
   --gutter: clamp(16px, 4vw, 40px);
-  color-scheme: dark;
+  color-scheme: light;
 }
+
+
+/* Zonas oscuras: mismos tonos de siempre */
+.site-header, .hero, .site-footer {
+  --bg: #050505; --surface: #0d1513; --surface-2: #17211f; --line: #232e2c;
+  --fg: #ffffff; --fg-soft: #b9c4c2; --fg-muted: #8a9593;
+  --teal: #1ae0c5; --teal-deep: #14b8a3; --sky: #2aa5f8; --on-teal: #050505; --warn: #f59e8b;
+  color-scheme: dark; color: var(--fg);
+}
+.hero, .site-footer { background: var(--bg); }
+.site-footer { border-top: 0; }
+.section { border-top-color: var(--line); }
 
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 84px; }
@@ -82,7 +96,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 /* Cabecera */
 .site-header {
   position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50;
-  background: rgba(5, 5, 5, 0.86); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  background: rgba(5, 5, 5, 0.97); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line);
 }
 .site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 72px; }
@@ -321,6 +335,30 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 @keyframes rise { from { opacity: .001; transform: translateY(12px); } to { opacity: 1; transform: none; } }
 
+
+/* Tarjetas con vida: sombra en reposo y elevación al pasar el cursor */
+.service, .pack, .project, .faq details, .form, .addons {
+  box-shadow: var(--shadow-card);
+  transition: transform .25s cubic-bezier(.2, .7, .2, 1), box-shadow .25s ease, border-color .25s ease, background-color .25s ease;
+}
+.service:hover, .pack:hover, .project:hover, .faq details:hover { border-color: var(--teal); box-shadow: var(--shadow-hover); }
+.pain, .step { transition: background-color .25s ease, box-shadow .25s ease; position: relative; }
+.pain::before, .step::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: linear-gradient(90deg, var(--teal), var(--sky)); transform: scaleX(0); transform-origin: left; transition: transform .35s ease; }
+.pain:hover, .step:hover { background: var(--surface); }
+.pain:hover::before, .step:hover::before { transform: scaleX(1); }
+.service .icon { transition: transform .25s ease, background-color .25s ease, color .25s ease; }
+.service:hover .icon { background: var(--teal); color: var(--on-teal); }
+.sector { transition: border-color .25s ease; }
+.sector:hover { border-top-color: var(--sky); }
+.project-media img { transition: transform .5s ease; }
+.project:hover .project-media img { transform: scale(1.03); }
+@media (prefers-reduced-motion: no-preference) {
+  .service:hover, .pack:hover, .project:hover { transform: translateY(-5px); }
+  .service:hover .icon { transform: scale(1.08); }
+}
+@media (prefers-reduced-motion: reduce) { .pain::before, .step::before, .project-media img { transition: none; } }
+@media (hover: none) { .service:hover, .pack:hover, .project:hover { transform: none; } }
+
 /* Responsive */
 @media (max-width: 1000px) {
   .hero-grid, .contact-grid { grid-template-columns: 1fr; }
@@ -361,11 +399,11 @@ body.at-end .sb-launch { padding: 10px; }
 /* Botones para subir y bajar la página */
 .scroll-nav { position: fixed; right: 26px; bottom: calc(92px + env(safe-area-inset-bottom, 0px)); z-index: 55; display: flex; flex-direction: column; gap: 8px; }
 .scroll-nav button {
-  width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); background: rgba(17, 20, 20, 0.85);
-  color: var(--teal); font-size: 20px; line-height: 1; cursor: pointer; display: grid; place-items: center;
+  width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); background: rgba(8, 12, 12, 0.92);
+  color: #1ae0c5; font-size: 20px; line-height: 1; cursor: pointer; display: grid; place-items: center;
   backdrop-filter: blur(8px); transition: opacity .2s, border-color .2s;
 }
-.scroll-nav button:hover { border-color: var(--teal); }
+.scroll-nav button:hover { border-color: #1ae0c5; }
 .scroll-nav button:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
 .scroll-nav button[hidden] { display: none; }
 @media (max-width: 560px) { .scroll-nav { right: 20px; bottom: calc(80px + env(safe-area-inset-bottom, 0px)); } .scroll-nav button { width: 40px; height: 40px; } }
