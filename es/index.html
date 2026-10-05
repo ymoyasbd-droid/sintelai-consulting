@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Sintel AI Consulting | Asistentes de IA y automatización para pymes</title>
+  <meta name="description" content="Asistentes inteligentes que atienden, agendan citas y captan clientes las 24 horas para pymes y negocios locales. Empieza con una auditoría IA gratuita de 30 minutos.">
+  <link rel="canonical" href="https://www.sintelai.es/es/">
+  <link rel="alternate" hreflang="ca" href="https://www.sintelai.es/">
+  <link rel="alternate" hreflang="es" href="https://www.sintelai.es/es/">
+  <link rel="alternate" hreflang="x-default" href="https://www.sintelai.es/">
+  <meta name="theme-color" content="#050505">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:url" content="https://www.sintelai.es/es/">
+  <meta property="og:title" content="Sintel AI Consulting | Asistentes de IA y automatización para pymes">
+  <meta property="og:description" content="Asistentes inteligentes que atienden, agendan citas y captan clientes las 24 horas. Auditoría IA gratuita de 30 minutos.">
+  <meta property="og:image" content="https://www.sintelai.es/assets/2026_10_04_og_image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sintel AI Consulting | Asistentes de IA y automatización para pymes">
+  <meta name="twitter:description" content="Asistentes inteligentes que atienden, agendan citas y captan clientes las 24 horas. Auditoría IA gratuita de 30 minutos.">
+  <meta name="twitter:image" content="https://www.sintelai.es/assets/2026_10_04_og_image.jpg">
+  <link rel="icon" href="../favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="../styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Sintel AI Consulting",
+    "url": "https://www.sintelai.es/",
+    "email": "comercial@sintelai.es",
+    "telephone": "+34 614 056 307",
+    "description": "Asistentes y chatbots de IA, automatización de procesos y consultoría IA para pymes y negocios locales.",
+    "areaServed": "ES",
+    "availableLanguage": ["es", "ca"]
+  }
+  </script>
+</head>
+<body>
+<!--BODY-START-->
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#inicio" aria-label="Sintel AI, inicio">
+      <img src="../assets/logo-sintel-ai.png" alt="Sintel AI · Inteligencia Artificial" width="860" height="340">
+    </a>
+    <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="nav" data-open="Cerrar">Menú</button>
+    <nav class="nav" id="nav" aria-label="Principal">
+      <a href="#servicios">Servicios</a>
+      <a href="#soluciones">Soluciones</a>
+      <a href="#como-trabajamos">Cómo trabajamos</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#faq">Preguntas</a>
+      <div class="lang" aria-label="Idioma"><a href='/' hreflang='ca' lang='ca'>CA</a><span aria-current="true">ES</span></div>
+      <a class="btn btn-primary" href="#contacto">Auditoría gratuita</a>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Consultoría de IA para pymes y negocios locales</p>
+        <h1>Tu negocio atiende, agenda y capta clientes <span class="grad">las 24 horas</span></h1>
+        <p class="lead">Ayudamos a pymes, autónomos y negocios locales a competir al nivel de las grandes empresas: asistentes inteligentes que responden por ti, recordatorios para que nadie olvide su cita y automatizaciones que quitan trabajo repetitivo a tu equipo.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="#contacto">Solicitar auditoría gratuita de 30 min</a>
+          <a class="btn btn-ghost" href="#soluciones">Ver soluciones</a>
+        </div>
+        <ul class="hero-proof">
+          <li>Cumplimiento RGPD</li>
+          <li>Sin tecnicismos para tu equipo</li>
+          <li>Derivación a una persona cuando hace falta</li>
+        </ul>
+      </div>
+
+      <figure class="demo" id="demo" data-lang="es" aria-label="Demo interactiva del recordatorio de cita por WhatsApp">
+        <div class="demo-bar"><span>Demo interactiva · elige una respuesta como si fueras la paciente</span><button type="button" id="demo-reset">Reiniciar</button></div>
+        <div class="chat">
+          <div class="chat-head">
+            <div class="chat-avatar" aria-hidden="true">S</div>
+            <div><strong>Asistente de tu clínica</strong><span>● WhatsApp de la paciente</span></div>
+            <div class="chat-time">Recordatorio 24 h</div>
+          </div>
+          <div class="chat-body" id="demo-log" aria-live="polite">
+            <p class="msg bot">Hola, Marta. Te recordamos tu cita de mañana a las 10:30. ¿Nos confirmas que vienes?</p>
+            <div class="quick"><button type="button" data-k="confirm">Confirmo</button><button type="button" data-k="change">Cambiar la cita</button><button type="button" data-k="cancel">No podré ir</button></div>
+          </div>
+        </div>
+        <div class="demo-side">
+          <section class="panel">
+            <h4>Aviso al equipo · grupo de WhatsApp</h4>
+            <div id="demo-wa" aria-live="polite"><p class="panel-empty">Cuando la paciente responde, tu equipo lo ve aquí sin tener que llamar.</p></div>
+          </section>
+          <section class="panel">
+            <h4>Agenda de la clínica</h4>
+            <ul class="agenda" id="demo-agenda">
+              <li><time>Mi 10:30</time><span>Marta</span><b class="st pend">Pendiente</b></li>
+              <li><time>Mi 11:00</time><span>Jordi</span><b class="st ok">Confirmada</b></li>
+              <li><time>Ju 9:00</time><span>—</span><b class="st free">Libre</b></li>
+              <li><time>Ju 17:30</time><span>—</span><b class="st free">Libre</b></li>
+            </ul>
+          </section>
+        </div>
+        <figcaption class="demo-foot">Ejemplo ilustrativo · recordatorio con reprogramación automática por WhatsApp</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- PROBLEMAS -->
+  <section class="section" id="problemas">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">¿Te suena?</p>
+        <h2>Los cuellos de botella que más cuestan a una pyme</h2>
+      </div>
+      <div class="pains">
+        <article class="pain">
+          <h3>Clientes que se pierden fuera de horario</h3>
+          <p>Te escriben por la tarde o el fin de semana y, cuando contestas, ya han ido a otro sitio.</p>
+          <p class="fix">Un asistente que responde y recoge sus datos al momento.</p>
+        </article>
+        <article class="pain">
+          <h3>Citas olvidadas</h3>
+          <p>Los no presentados dejan huecos en la agenda y cuestan dinero cada semana.</p>
+          <p class="fix">Recordatorios automáticos para que nadie olvide su cita.</p>
+        </article>
+        <article class="pain">
+          <h3>Llamadas y mensajes que saturan</h3>
+          <p>Tu equipo responde una y otra vez las mismas preguntas en lugar de atender al cliente que tiene delante.</p>
+          <p class="fix">Las dudas frecuentes resueltas sin intervención.</p>
+        </article>
+        <article class="pain">
+          <h3>Papeleo y contactos desordenados</h3>
+          <p>Presupuestos a mano, facturas que se copian de un sitio a otro y contactos repartidos en libretas y chats.</p>
+          <p class="fix">Herramientas conectadas y fichas de cliente en un solo panel.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="section section-alt" id="servicios">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Servicios</p>
+        <h2>Tres formas de poner la IA a trabajar en tu negocio</h2>
+        <p class="lead">No vendemos tecnología abstracta ni horas de desarrollo. Resolvemos problemas concretos con herramientas que tu equipo ya conoce, como WhatsApp o el correo.</p>
+      </div>
+      <div class="services">
+        <article class="service">
+          <div class="icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <h3>Asistentes y chatbots IA</h3>
+          <p>Atención al cliente 24/7, captación de contactos y reserva automática de citas, en tu web y conectado con WhatsApp.</p>
+        </article>
+        <article class="service">
+          <div class="icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v6H4zM14 14h6v6h-6zM10 7h4a3 3 0 0 1 3 3v4M14 17h-4a3 3 0 0 1-3-3v-4"/></svg></div>
+          <h3>Automatización de procesos</h3>
+          <p>Conectamos tu CRM, tu programa de gestión y tu correo para generar presupuestos en minutos, agilizar la facturación y eliminar tareas manuales.</p>
+        </article>
+        <article class="service">
+          <div class="icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M8 11h6M11 8v6"/></svg></div>
+          <h3>Consultoría y auditoría IA</h3>
+          <p>Analizamos cómo trabaja tu negocio hoy y diseñamos un plan de digitalización centrado en lo que antes te devuelve la inversión.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUCIONES / PACKS -->
+  <section class="section" id="soluciones">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Soluciones</p>
+        <h2>Elige el punto de partida que encaja con tu negocio</h2>
+        <p class="lead">Cada empresa usa herramientas distintas, así que el presupuesto final siempre es a medida y sin compromiso, después de la auditoría gratuita.</p>
+      </div>
+
+      <div class="packs">
+        <article class="pack">
+          <span class="pack-num">Pack 1</span>
+          <h3>Asistente web y captación</h3>
+          <p class="for">Para negocios locales y profesionales que quieren convertir visitas en contactos y resolver dudas fuera de horario.</p>
+          <div class="pack-meta"><span class="chip">Sin CRM</span><span class="chip on">Entrega en 5 días hábiles</span></div>
+          <ul class="checks">
+            <li>Asistente en tu web, adaptado a móvil y escritorio</li>
+            <li>Hasta 25 preguntas frecuentes: horarios, ubicación, servicios y condiciones</li>
+            <li>Recoge nombre, teléfono, email y motivo de la consulta</li>
+            <li>Aviso por email y registro de cada contacto en Google Sheets</li>
+            <li>Funciona en WordPress, Webflow, Shopify, Wix, Netlify, Vercel o webs a medida</li>
+          </ul>
+          <div class="pack-price"><strong>Presupuesto a medida</strong><small>Tras la auditoría gratuita · incluye mantenimiento mensual</small></div>
+        </article>
+
+        <article class="pack featured">
+          <span class="pack-tag">Para pymes con volumen de mensajes</span>
+          <span class="pack-num">Pack 2</span>
+          <h3>Asistente Pro omnicanal</h3>
+          <p class="for">Para pymes que necesitan responder al instante, avisar a su equipo por WhatsApp y tener todos los contactos ordenados.</p>
+          <div class="pack-meta"><span class="chip on">Incluye CRM</span><span class="chip on">Entrega en 10 días hábiles</span></div>
+          <ul class="checks">
+            <li>Conversación guiada según el perfil de cada cliente</li>
+            <li>Clasificación automática: urgente, prioritario o estándar</li>
+            <li>Aviso inmediato al grupo de WhatsApp de tu equipo</li>
+            <li>CRM centralizado (Supabase, Notion o HubSpot) con panel de estados</li>
+            <li>Derivación directa al comercial o técnico que corresponde</li>
+            <li>Consentimiento RGPD en el primer contacto y datos cifrados</li>
+          </ul>
+          <div class="pack-price"><strong>Presupuesto a medida</strong><small>Tras la auditoría gratuita · incluye mantenimiento mensual</small></div>
+        </article>
+
+        <article class="pack">
+          <span class="pack-num">Pack 3</span>
+          <h3>Suite Premium: landing + citas</h3>
+          <p class="for">Para centros médicos, estéticos, fisioterapia y negocios con cita previa que quieren web nueva y agenda automática.</p>
+          <div class="pack-meta"><span class="chip on">Incluye CRM</span><span class="chip on">Entrega en 15 días hábiles</span></div>
+          <ul class="checks">
+            <li>Landing page de alta conversión diseñada y publicada para ti</li>
+            <li>Todo lo del Pack Pro, más la API oficial de WhatsApp Business</li>
+            <li>Reserva de citas en el chat con Google Calendar o Calendly</li>
+            <li>Confirmación por WhatsApp, recordatorio 24 h antes con botones para confirmar o cambiar, y aviso 2 h antes</li>
+            <li>Panel con citas, cancelaciones, asistencia y conversión</li>
+          </ul>
+          <div class="pack-price"><strong>Presupuesto a medida</strong><small>Tras la auditoría gratuita · incluye mantenimiento mensual</small></div>
+        </article>
+      </div>
+
+      <div class="table-wrap" role="region" aria-label="Comparativa de packs" tabindex="0">
+        <table class="compare">
+          <thead><tr><th scope="col">Qué incluye</th><th scope="col">Pack 1</th><th scope="col">Pack 2</th><th scope="col">Pack 3</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Asistente en tu web</th><td class="yes">Sí</td><td class="yes">Sí</td><td class="yes">Sí</td></tr>
+            <tr><th scope="row">WhatsApp</th><td class="dash">No</td><td>Avisos al grupo de tu equipo</td><td class="yes">API oficial de WhatsApp Business</td></tr>
+            <tr><th scope="row">Gestión de contactos</th><td>Email y Google Sheets</td><td class="yes">CRM centralizado</td><td class="yes">CRM centralizado</td></tr>
+            <tr><th scope="row">Agenda y recordatorios de cita</th><td class="dash">No</td><td class="dash">No</td><td class="yes">Sí</td></tr>
+            <tr><th scope="row">Landing page incluida</th><td class="dash">No, usa tu web</td><td class="dash">No, usa tu web</td><td class="yes">Sí</td></tr>
+            <tr><th scope="row">Plazo de entrega</th><td>5 días hábiles</td><td>10 días hábiles</td><td>15 días hábiles</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="addons">
+        <h3>Ampliaciones</h3>
+        <ul>
+          <li class="chip">Landing page para Packs 1 y 2</li>
+          <li class="chip">Entrenamiento con más de 100 documentos o catálogos</li>
+          <li class="chip">Canal adicional: Instagram Direct o Telegram</li>
+          <li class="chip">Horas de consultoría técnica</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTORES -->
+  <section class="section section-alt" id="sectores">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Sectores</p>
+        <h2>Lo que resolvemos en cada tipo de negocio</h2>
+      </div>
+      <div class="sectors">
+        <article class="sector">
+          <h3>Clínicas y centros médicos</h3>
+          <dl>
+            <dt>El problema</dt><dd>Pacientes que no se presentan a su cita.</dd>
+            <dt>La solución</dt><dd>Recordatorios automáticos por WhatsApp y reprogramación desde el propio chat.</dd>
+          </dl>
+        </article>
+        <article class="sector">
+          <h3>Agencias B2B</h3>
+          <dl>
+            <dt>El problema</dt><dd>Horas perdidas preparando presupuestos.</dd>
+            <dt>La solución</dt><dd>Flujos automáticos que generan la propuesta en unos 5 minutos.</dd>
+          </dl>
+        </article>
+        <article class="sector">
+          <h3>Inmobiliarias</h3>
+          <dl>
+            <dt>El problema</dt><dd>Interesados que escriben fuera de horario y nadie atiende.</dd>
+            <dt>La solución</dt><dd>Un asistente que cualifica a cada cliente y lo guarda en el CRM.</dd>
+          </dl>
+        </article>
+      </div>
+      <p class="also">También trabajamos con autónomos, centros de psicotécnicos, agencias de marketing, despachos profesionales, reformas e instalaciones, concesionarios y academias.</p>
+    </div>
+  </section>
+
+  <!-- CÓMO TRABAJAMOS -->
+  <section class="section" id="como-trabajamos">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Cómo trabajamos</p>
+        <h2>Primero entendemos tu negocio. Después construimos.</h2>
+      </div>
+      <ol class="steps">
+        <li class="step">
+          <span class="step-n">Fase 1</span>
+          <h3>Auditoría IA gratuita</h3>
+          <p>En 30 minutos revisamos cómo trabajas y localizamos los cuellos de botella donde la IA te ahorra tiempo y dinero.</p>
+        </li>
+        <li class="step">
+          <span class="step-n">Fase 2</span>
+          <h3>Diseño e implementación</h3>
+          <p>Desarrollamos e integramos tu solución a medida sin interrumpir el trabajo de tu equipo.</p>
+        </li>
+        <li class="step">
+          <span class="step-n">Fase 3</span>
+          <h3>Formación y soporte continuo</h3>
+          <p>Enseñamos a tu equipo a usar las herramientas y seguimos ajustándolas con el mantenimiento mensual.</p>
+        </li>
+      </ol>
+      <ul class="method-notes">
+        <li><strong>Pocas reuniones</strong>Una de arranque de 20 minutos y una de validación de 30.</li>
+        <li><strong>Lo pruebas antes de publicar</strong>Ves el asistente en un enlace privado y ajustamos lo que necesites.</li>
+        <li><strong>Pago en dos partes</strong>50 % al aceptar el presupuesto y 50 % a la entrega validada.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section class="section section-alt" id="portfolio">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Portfolio</p>
+        <h2>Aplicaciones que ya hemos construido</h2>
+        <p class="lead">Proyectos en producción y demos que puedes probar.</p>
+      </div>
+      <div class="projects">
+        <article class="project">
+          <div class="project-media">
+            <img src="../assets/portfolio-traffic-centre-medic.png" alt="Portada de la web de Traffic Centre Mèdic" loading="lazy" width="1440" height="960">
+            <span class="status live">En producción</span>
+          </div>
+          <div class="project-body">
+            <h3>Traffic Centre Mèdic</h3>
+            <p>Web para un centro médico de Sabadell autorizado por la DGT, especializado en renovación del carnet de conducir y psicotécnicos.</p>
+            <ul class="does">
+              <li>Presenta los trámites del centro sin cita previa</li>
+              <li>Calculadora de tarifas para que el cliente sepa el precio antes de ir</li>
+              <li>Asistente virtual que responde dudas</li>
+              <li>Diseño y SEO local, en castellano y catalán</li>
+            </ul>
+            <div class="tags"><span class="chip">Sector salud</span><span class="chip">Web activa</span><span class="chip">SEO local</span></div>
+            <a class="project-link" href="https://traffic-centre-medic.com/" target="_blank" rel="noopener">Ver la web →</a>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-media">
+            <img src="../assets/portfolio-stockalarm.jpg" alt="Pantallas de StockAlarm en el móvil: catálogo y panel del técnico" loading="lazy" width="1440" height="810">
+            <span class="status live">En producción</span>
+          </div>
+          <div class="project-body">
+            <h3>StockAlarm</h3>
+            <p>Aplicación instalable en el móvil para gestionar inventario, órdenes de trabajo y stock por técnico en empresas de sistemas de alarma. Pensada para usarse con una mano, en obra.</p>
+            <ul class="does">
+              <li>Órdenes de trabajo con código validado: instalaciones y traslados, o averías y mantenimientos</li>
+              <li>Registro rápido del material consumido en cada orden, con kits predefinidos para instalaciones estándar</li>
+              <li>Stock de cada furgoneta actualizado solo con cada consumo, entrada o albarán</li>
+              <li>Albaranes de recogida con foto del justificante y alertas de stock mínimo</li>
+              <li>Historial por técnico, movimientos de entrada y salida y ranking del equipo</li>
+            </ul>
+            <div class="tags"><span class="chip">App móvil</span><span class="chip">Inventario</span><span class="chip">Órdenes de trabajo</span></div>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-media">
+            <img src="../assets/portfolio-centres-medics.png" class="pos-left" alt="Calculadora de ROI de la demo Sintel AI Centres Mèdics: «Quant estàs perdent cada mes?»" loading="lazy" width="1482" height="766">
+            <span class="status demo at-right">Demo</span>
+          </div>
+          <div class="project-body">
+            <h3>Sintel AI Centros Médicos</h3>
+            <p>Solución de automatización para centros de reconocimiento de conductores autorizados por la DGT.</p>
+            <ul class="does">
+              <li>Automatiza la cita previa para los reconocimientos médicos</li>
+              <li>Envía recordatorios automáticos a los pacientes</li>
+              <li>Ayuda a captar personas que necesitan renovar el carnet</li>
+              <li>Asistente de IA que atiende a los pacientes 24/7</li>
+            </ul>
+            <div class="tags"><span class="chip">Sector salud</span><span class="chip">Citas</span><span class="chip">Chatbot IA</span></div>
+            <a class="project-link" href="https://sinteliacentres-medics.netlify.app/" target="_blank" rel="noopener">Ver la demo →</a>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-media">
+            <img src="../assets/portfolio-asistente-ia.png" alt="Portada de la app AsistenteIA: «Un chatbot de IA entrenado con tu web en menos de 5 minutos»" loading="lazy" width="1288" height="732">
+            <span class="status demo at-right">Demo</span>
+          </div>
+          <div class="project-body">
+            <h3>AsistenteIA</h3>
+            <p>Crea un chatbot que atiende a tus clientes y capta contactos las 24 horas, sin saber programar.</p>
+            <ul class="does">
+              <li>Lee hasta 30 páginas de tu web y responde solo con esa información</li>
+              <li>Detecta el interés comercial y pide los datos de contacto, que quedan en tu panel</li>
+              <li>Se personaliza la apariencia y el comportamiento del chatbot</li>
+              <li>Se instala copiando una línea de código en tu web</li>
+            </ul>
+            <div class="tags"><span class="chip">Chatbot IA</span><span class="chip">Captación</span></div>
+            <a class="project-link" href="https://web-ai-assistant.lovable.app" target="_blank" rel="noopener">Ver la demo →</a>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-media">
+            <img src="../assets/portfolio-capto-leads-b2b.png" alt="Portada de la app Capto Leads B2B: «De una zona en el mapa a una oportunidad ganada.»" loading="lazy" width="1293" height="748">
+            <span class="status demo at-corner">Demo</span>
+          </div>
+          <div class="project-body">
+            <h3>Capto Leads B2B</h3>
+            <p>Para autónomos y equipos comerciales: encontrar posibles clientes, preparar propuestas y seguir oportunidades en un mismo sitio.</p>
+            <ul class="does">
+              <li>Busca empresas reales por servicio, ciudad, radio y tipo de negocio</li>
+              <li>Guarda cada búsqueda como una lista que puedes repetir y ver en el mapa</li>
+              <li>Ayuda con IA a redactar la propuesta para cada cliente potencial</li>
+              <li>Clasifica las oportunidades por estado y muestra métricas con tus propios datos</li>
+            </ul>
+            <div class="tags"><span class="chip">Prospección</span><span class="chip">Propuestas</span><span class="chip">B2B</span></div>
+            <a class="project-link" href="https://captoleadsb2b.lovable.app/" target="_blank" rel="noopener">Ver la demo →</a>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-media">
+            <img src="../assets/portfolio-crm-captacion.png" alt="Tablero del CRM interno de Sintel AI con contactos de ejemplo y la ficha con la investigación IA" loading="lazy" width="1440" height="810">
+            <span class="status internal at-bottom">En uso en Sintel AI</span>
+          </div>
+          <div class="project-body">
+            <h3>Sistema de captación y CRM de contactos</h3>
+            <p>El circuito completo que usamos para nuestros propios contactos y que replicamos para clínicas, inmobiliarias y pymes.</p>
+            <ul class="does">
+              <li>Envía al cliente un email de confirmación desde el dominio del negocio</li>
+              <li>Registra cada contacto en una hoja de Google Sheets</li>
+              <li>La IA puntúa el contacto, le asigna sector y propone el siguiente paso</li>
+              <li>CRM tipo tablero con estados: nuevo, contactado, negociación y cerrado</li>
+              <li>Ficha de investigación de la empresa del cliente, con sus fuentes, para preparar la llamada</li>
+            </ul>
+            <div class="tags"><span class="chip">Captación</span><span class="chip">CRM</span><span class="chip">Automatización</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONFIANZA -->
+  <section class="section" id="garantias">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Tranquilidad</p>
+        <h2>Tú tienes el control de lo que dice tu asistente</h2>
+      </div>
+      <ul class="trust">
+        <li><strong>Datos protegidos</strong><span>Modelos de IA empresariales que cumplen el RGPD. Tu información nunca se usa para entrenar modelos públicos.</span></li>
+        <li><strong>Responde con tu información</strong><span>El asistente solo usa tus datos oficiales: horarios, servicios y tarifas.</span></li>
+        <li><strong>Pasa a una persona</strong><span>Si una pregunta se sale de lo previsto, toma los datos del cliente y avisa a tu equipo.</span></li>
+        <li><strong>Soporte en menos de 24 h</strong><span>Con el mantenimiento mensual respondemos en menos de 24 horas laborables.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section-alt" id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Preguntas frecuentes</p>
+        <h2>Lo que nos preguntan antes de empezar</h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>¿La inteligencia artificial es solo para grandes empresas?</summary>
+          <p>En absoluto. Las pymes son las que más se benefician. La IA funciona como un empleado digital que te permite optimizar recursos y competir con los grandes sin disparar los costes de contratación.</p>
+        </details>
+        <details>
+          <summary>¿Cuánto cuesta?</summary>
+          <p>No trabajamos con paquetes cerrados porque cada negocio es único. Empezamos siempre con una auditoría gratuita de 30 minutos y, tras ver las herramientas que ya usas, te preparamos un presupuesto a medida y sin compromiso.</p>
+        </details>
+        <details>
+          <summary>¿Cuánto se tarda en tenerlo funcionando?</summary>
+          <p>Depende de la solución: el asistente web se entrega en 5 días hábiles, el Asistente Pro en 10 y la Suite Premium con landing y citas en 15.</p>
+        </details>
+        <details>
+          <summary>¿Mis datos y los de mis clientes están seguros?</summary>
+          <p>Sí. Trabajamos exclusivamente con modelos de IA empresariales que cumplen de forma estricta el RGPD europeo. La información de tu empresa nunca se utiliza para entrenar modelos públicos.</p>
+        </details>
+        <details>
+          <summary>¿Mi equipo necesita saber de tecnología?</summary>
+          <p>No. Nos encargamos de toda la parte técnica. Tu equipo trabaja con herramientas que ya conoce, como WhatsApp o el correo, y le damos toda la formación necesaria.</p>
+        </details>
+        <details>
+          <summary>¿Qué pasa si el asistente no sabe responder?</summary>
+          <p>Los asistentes tienen límites estrictos. Si detectan una pregunta fuera de su conocimiento o una situación delicada, toman los datos del cliente y pasan la conversación a tu equipo de inmediato.</p>
+        </details>
+        <details>
+          <summary>¿Qué incluye el mantenimiento mensual?</summary>
+          <p>Vigilancia continua de que todo funciona, hasta 2 horas al mes de ajustes (nuevas preguntas, cambios de tarifas o del flujo de conversación), la infraestructura para hasta 1.500 conversaciones al mes y soporte por WhatsApp o email con respuesta en menos de 24 horas laborables.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="section" id="contacto">
+    <div class="wrap contact-grid">
+      <div class="contact-info">
+        <p class="eyebrow">Auditoría IA gratuita</p>
+        <h2>Cuéntanos tu caso y te enseñamos dónde ahorrar tiempo</h2>
+        <p class="lead">30 minutos, sin compromiso. Te respondemos en menos de 24 horas laborables, en castellano o en catalán.</p>
+        <ul class="contact-lines">
+          <li><span>Contacto</span><b>Yolanda Moya</b></li>
+          <li><span>Email</span><a href="mailto:comercial@sintelai.es">comercial@sintelai.es</a></li>
+          <li><span>Teléfono y WhatsApp</span><a href="https://wa.me/34614056307" target="_blank" rel="noopener">+34 614 056 307</a></li>
+        </ul>
+      </div>
+
+      <form class="form" id="lead-form" data-lang="es" novalidate>
+        <div class="field"><label for="f-name">Nombre *</label><input id="f-name" name="name" autocomplete="name" maxlength="100" required></div>
+        <div class="field"><label for="f-email">Email *</label><input id="f-email" name="email" type="email" autocomplete="email" maxlength="255" required></div>
+        <div class="field"><label for="f-phone">Teléfono</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" maxlength="30"></div>
+        <div class="field"><label for="f-company">Empresa o sector *</label><input id="f-company" name="company" autocomplete="organization" maxlength="150" required placeholder="Ej.: clínica dental en Sabadell"></div>
+        <div class="field full"><label for="f-service">¿Qué te interesa?</label>
+          <select id="f-service" name="service">
+            <option value="">No lo tengo claro todavía</option>
+            <option>Asistente web y captación</option>
+            <option>Asistente Pro con CRM</option>
+            <option>Suite Premium: landing y citas</option>
+            <option>Automatización de procesos</option>
+            <option>Consultoría y auditoría IA</option>
+          </select>
+        </div>
+        <div class="field full"><label for="f-message">Cuéntanos tu caso *</label><textarea id="f-message" name="message" maxlength="5000" required placeholder="Ej.: perdemos muchas citas porque los pacientes no se presentan"></textarea></div>
+        <div class="hp" aria-hidden="true"><label for="f-website">No rellenar</label><input id="f-website" name="website" tabindex="-1" autocomplete="off"></div>
+        <label class="consent" for="f-consent"><input id="f-consent" name="consent" type="checkbox" required> <span>Acepto la <a href='/es/legal#privacidad'>política de privacidad</a> y que Sintel AI me contacte sobre mi solicitud.</span></label>
+        <button class="btn btn-primary" type="submit" id="f-submit">Reservar mi auditoría gratuita</button>
+        <p class="form-msg" id="form-msg" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <img src="../assets/logo-sintel-ai.png" alt="Sintel AI" width="860" height="340" loading="lazy">
+    <p>© <span id="year">2026</span> Sintel AI Consulting</p>
+    <nav class="footer-links" aria-label="Legal">
+      <a href='/es/legal#aviso-legal'>Aviso legal</a>
+      <a href='/es/legal#privacidad'>Privacidad</a>
+      <a href='/es/legal#cookies'>Cookies</a>
+    </nav>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/34614056307" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3a.5.5 0 0 0 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3z"/></svg>
+  <span>WhatsApp</span>
+</a>
+<!--BODY-END-->
+<script src="../main.js" defer></script>
+<!-- Assistent de captació de Sintel AI -->
+<script src="../chatbot.js" data-lang="es" data-endpoint="/.netlify/functions/chat" data-webhook="https://hook.eu2.make.com/ksh91tz8yt92lm9kq5bx9ygsfeh95bhk" data-privacy="legal.html#privacidad" defer></script>
+</body>
+</html>
