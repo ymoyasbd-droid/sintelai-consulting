@@ -205,6 +205,9 @@ ul { margin: 0; padding: 0; list-style: none; }
 .pack-price small { color: var(--fg-muted); font-size: 0.82rem; }
 .addons { margin-top: 28px; border: 1px dashed var(--line); border-radius: var(--radius-lg); padding: 22px 26px; display: grid; grid-template-columns: auto 1fr; gap: 10px 28px; align-items: start; }
 .addons h3 { font-size: var(--step-1); }
+.addons p { color: var(--fg-soft); margin-bottom: 12px; max-width: 70ch; }
+.addons + .addons { margin-top: 16px; }
+.voice-addon { border: 1px solid var(--teal); border-style: solid; background: var(--surface); }
 .addons ul { display: flex; flex-wrap: wrap; gap: 8px; }
 .table-wrap { overflow-x: auto; margin-top: 28px; border: 1px solid var(--line); border-radius: var(--radius-lg); }
 .compare { width: 100%; min-width: 640px; border-collapse: collapse; font-size: 0.9rem; }
