@@ -136,6 +136,10 @@
   // L'usuari demana explícitament deixar dades, que el contactin o reservar l'auditoria: va directe al formulari
   var WANTS_FORM = /(deix(ar|o|a)|dej(ar|o|a)|facilit(ar|o)|donar|dar|passar|pasar)\s+(-?(les?|los?|las?)\s+)?(meves?|mis|mi|meu)?\s*(dades|datos|contacte|contacto|tel[eè]fon|correu|correo|e-?mail)|(que|perqu[eè])\s+(em|me)\s+(truqu|llam|contact|escriu|escrib)|(vull|voldria|m'agradaria|quiero|querr[ií]a|me gustar[ií]a)\s+(que\s+)?(em|me)?\s*(contact|truc|llam)|auditor[ií]a|agendar|(reservar|demanar|pedir|sol·licitar|solicitar)\s+(una\s+)?(cita|reuni|trobada|llamada|trucada)|(parlar|hablar)\s+(amb|con)\s+(alg[uú]|alguien|una persona|l'equip|el equipo)/i;
   var INTENT = /auditor|contact|truca|llam|reuni|interes|m'interessa|me interesa|vull|quiero|contratar|pressupost|presupuesto/i;
+  // La resposta de la IA assenyala el botó o el formulari de dades → cal mostrar-lo de debò
+  var POINTS_FORM = /deixar les meves dades|dejar mis datos|bot[oó]n|bot[oó]\b|formulari|formulario/i;
+  // Resposta afirmativa curta («sí», «vale», «d'acord»…)
+  var AFFIRM = /^\s*(s[ií]|vale|ok|okay|d'acord|dacord|perfecte|perfecto|clar|claro|endavant|adelante|per favor|por favor|de acuerdo|va|genial|molt b[eé]|muy bien)\s*[.!]*\s*$/i;
 
   /* ---------- Dades de contacte escrites o dictades al xat ---------- */
   // Si algú dóna el telèfon, el correu o el nom, no es respon amb una frase genèrica:
@@ -311,6 +315,7 @@
   var busy = false;
   var userTurns = 0;
   var formShown = false;
+  var lastOfferTurn = -9;
 
   function scroll() { log.scrollTop = log.scrollHeight; }
   function say(text, who) { var m = el("div", "sb-msg " + (who === "user" ? "sb-user" : "sb-bot"), text); log.appendChild(m); scroll(); return m; }
@@ -345,6 +350,7 @@
 
   function offerForm() {
     if (formShown) return;
+    lastOfferTurn = userTurns;
     say(T.offerForm, "bot");
     quick([["form", T.yesForm], ["more", T.moreQ]]);
   }
@@ -400,12 +406,18 @@
       reply(ALL[userLang(text)].leadIn);
       return showForm();
     }
+    var prev = history.length > 1 ? history[history.length - 2] : null;
+    if (!formShown && AFFIRM.test(text) && prev && prev.role === "assistant" && POINTS_FORM.test(prev.content)) {   // «sí» a l'oferta: formulari directe
+      busy = false;
+      reply(ALL[userLang(text)].leadIn);
+      return showForm();
+    }
     var typing = say(T.typing, "bot");
     typing.classList.add("sb-typing");
 
     var done = function (answer) {
       typing.remove();
-      var wantsOffer = INTENT.test(text) || userTurns === 3;
+      var wantsOffer = INTENT.test(text) || userTurns === 3 || (POINTS_FORM.test(answer) && userTurns - lastOfferTurn >= 2);
       var generic = answer === ALL.ca.answers.fallback || answer === ALL.es.answers.fallback;
       if (generic && wantsOffer && !formShown) { busy = false; return offerForm(); }   // evita la frase genèrica + oferta repetida
       reply(answer);
