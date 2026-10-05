@@ -65,7 +65,8 @@
       micDenied: "No tinc permís per al micròfon. Revisa els permisos del navegador o escriu la teva pregunta.",
       micEmpty: "No t'he sentit bé. Torna-ho a provar o escriu la teva pregunta.",
       voiceError: "Ara mateix no puc fer servir la veu. Pots escriure la teva pregunta.",
-      dataIntake: "Gràcies! Perquè pugui guardar les teves dades i et contactem, revisa'ls i confirma'ls aquí. És imprescindible acceptar la política de privacitat."
+      dataIntake: "Gràcies! Perquè pugui guardar les teves dades i et contactem, revisa'ls i confirma'ls aquí. És imprescindible acceptar la política de privacitat.",
+      leadIn: "Perfecte! Omple aquestes dades i una persona de l'equip et contactarà. És imprescindible acceptar la política de privacitat."
     },
     es: {
       launcher: "Habla con el asistente", title: "Asistente Sintel AI", status: "Responde al instante",
@@ -105,7 +106,8 @@
       micDenied: "No tengo permiso para el micrófono. Revisa los permisos del navegador o escribe tu pregunta.",
       micEmpty: "No te he oído bien. Inténtalo de nuevo o escribe tu pregunta.",
       voiceError: "Ahora mismo no puedo usar la voz. Puedes escribir tu pregunta.",
-      dataIntake: "¡Gracias! Para guardar tus datos y que te contactemos, revísalos y confírmalos aquí. Es imprescindible aceptar la política de privacidad."
+      dataIntake: "¡Gracias! Para guardar tus datos y que te contactemos, revísalos y confírmalos aquí. Es imprescindible aceptar la política de privacidad.",
+      leadIn: "¡Perfecto! Rellena estos datos y una persona del equipo te contactará. Es imprescindible aceptar la política de privacidad."
     }
   };
   var T = ALL[LANG];
@@ -131,6 +133,8 @@
     ["contacto", /tel[eè]fon|whatsapp|email|correu|correo|contact|truca|llam/i],
     ["leads", /client|lead|captar|captaci|vend|web|xat|chat|bot|asistente|assistent/i]
   ];
+  // L'usuari demana explícitament deixar dades, que el contactin o reservar l'auditoria: va directe al formulari
+  var WANTS_FORM = /(deix(ar|o|a)|dej(ar|o|a)|facilit(ar|o)|donar|dar|passar|pasar)\s+(-?(les?|los?|las?)\s+)?(meves?|mis|mi|meu)?\s*(dades|datos|contacte|contacto|tel[eè]fon|correu|correo|e-?mail)|(que|perqu[eè])\s+(em|me)\s+(truqu|llam|contact|escriu|escrib)|(vull|voldria|m'agradaria|quiero|querr[ií]a|me gustar[ií]a)\s+(que\s+)?(em|me)?\s*(contact|truc|llam)|auditor[ií]a|agendar|(reservar|demanar|pedir|sol·licitar|solicitar)\s+(una\s+)?(cita|reuni|trobada|llamada|trucada)|(parlar|hablar)\s+(amb|con)\s+(alg[uú]|alguien|una persona|l'equip|el equipo)/i;
   var INTENT = /auditor|contact|truca|llam|reuni|interes|m'interessa|me interesa|vull|quiero|contratar|pressupost|presupuesto/i;
 
   /* ---------- Dades de contacte escrites o dictades al xat ---------- */
@@ -391,14 +395,22 @@
       reply(ALL[userLang(text)].dataIntake);
       return showForm(extractContact(text));
     }
+    if (!formShown && WANTS_FORM.test(text)) {   // vol deixar dades: sense respostes intermèdies
+      busy = false;
+      reply(ALL[userLang(text)].leadIn);
+      return showForm();
+    }
     var typing = say(T.typing, "bot");
     typing.classList.add("sb-typing");
 
     var done = function (answer) {
       typing.remove();
+      var wantsOffer = INTENT.test(text) || userTurns === 3;
+      var generic = answer === ALL.ca.answers.fallback || answer === ALL.es.answers.fallback;
+      if (generic && wantsOffer && !formShown) { busy = false; return offerForm(); }   // evita la frase genèrica + oferta repetida
       reply(answer);
       busy = false;
-      if (INTENT.test(text) || userTurns === 3) setTimeout(offerForm, 400);
+      if (wantsOffer) setTimeout(offerForm, 400);
     };
 
     if (!aiAvailable) return setTimeout(function () { done(guided(text)); }, 350);
