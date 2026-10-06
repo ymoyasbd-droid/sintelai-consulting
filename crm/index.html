@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>CRM interno | Sintel AI</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="../favicon.ico">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="crm.css">
+</head>
+<body class="crm">
+<!--BODY-START-->
+<div id="crm-login" class="crm-login" hidden>
+  <form class="crm-card" id="login-form" novalidate>
+    <img src="../assets/logo-sintel-ai.png" alt="Sintel AI" width="860" height="340">
+    <div><h1>CRM interno</h1><p>Acceso solo para el equipo</p></div>
+    <div class="field"><label for="l-email">Email</label><input id="l-email" type="email" autocomplete="username" required></div>
+    <div class="field"><label for="l-pass">Contraseña</label><input id="l-pass" type="password" autocomplete="current-password" required></div>
+    <button class="btn btn-primary" type="submit" id="l-submit">Entrar</button>
+    <p class="crm-msg" id="login-msg" role="alert"></p>
+  </form>
+</div>
+
+<div id="crm-denied" class="crm-login" hidden>
+  <div class="crm-card"><p>Tu cuenta no tiene acceso al CRM.</p><button class="btn btn-ghost" type="button" data-logout>Salir</button></div>
+</div>
+
+<div id="crm-app" hidden>
+  <header class="crm-top">
+    <div class="crm-top-in">
+      <img src="../assets/logo-sintel-ai.png" alt="Sintel AI" width="860" height="340">
+      <span class="eyebrow">CRM</span>
+      <span class="crm-demo" id="demo-flag" hidden>Vista previa con contactos de ejemplo</span>
+      <button class="btn btn-ghost crm-out" type="button" data-logout>Salir</button>
+    </div>
+  </header>
+
+  <main class="crm-main">
+    <section class="crm-kpis" aria-label="Resumen">
+      <div><span>Contactos</span><strong id="k-total">0</strong></div>
+      <div><span>Nuevos sin atender</span><strong id="k-new">0</strong></div>
+      <div><span>Desde el asistente</span><strong id="k-bot">0</strong></div>
+      <div><span>Cerrados</span><strong id="k-won">0</strong></div>
+    </section>
+
+    <div class="crm-filters">
+      <input id="q" type="search" placeholder="Buscar por nombre, email, teléfono o empresa" aria-label="Buscar">
+      <select id="f-service" aria-label="Filtrar por servicio"><option value="">Todos los servicios</option></select>
+      <button class="btn btn-ghost" type="button" id="reload">Actualizar</button>
+    </div>
+
+    <div class="board" id="board" aria-live="polite"></div>
+  </main>
+
+  <aside class="drawer" id="drawer" hidden aria-label="Ficha del contacto">
+    <div class="drawer-in" id="drawer-in"></div>
+  </aside>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</div>
+<!--BODY-END-->
+<script src="crm.js" defer></script>
+</body>
+</html>
