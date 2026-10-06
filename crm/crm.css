@@ -17,7 +17,7 @@ body.crm { min-height: 100vh; }
 .crm-top-in { max-width: 1400px; margin-inline: auto; padding: 10px var(--gutter); display: flex; align-items: center; gap: 14px; }
 .crm-top img { height: 40px; width: auto; }
 .crm-demo { font-family: var(--font-mono); font-size: 0.72rem; color: var(--warn); border: 1px dashed var(--warn); border-radius: 999px; padding: 3px 10px; }
-.crm-out { margin-left: auto; padding: 8px 16px; font-size: 0.9rem; }
+.crm-out { margin-left: auto; padding: 8px 16px; font-size: 0.9rem; color: #f4f4f5; border-color: rgba(255, 255, 255, 0.3); }
 
 .crm-main { max-width: 1400px; margin-inline: auto; padding: 22px var(--gutter) 48px; display: flex; flex-direction: column; gap: 18px; }
 .crm-kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
