@@ -176,6 +176,9 @@
   var TXT = {
     ca: {
       thanks: "Gràcies! Et contactem en menys de 24 hores laborables.",
+      doneTitle: "Missatge enviat correctament",
+      doneText: function (n, e) { return "Gràcies, " + n + ". T'hem enviat un correu de confirmació a " + e + " i et contactem en menys de 24 hores laborables."; },
+      again: "Enviar un altre missatge",
       name: "Indica el teu nom.", email: "Revisa l'email: sembla que no és vàlid.",
       company: "Indica la teva empresa o sector per preparar l'auditoria.", message: "Explica'ns breument el teu cas.",
       consent: "Per enviar, accepta la política de privacitat.", undecided: "Encara no ho tinc clar",
@@ -184,6 +187,9 @@
     },
     es: {
       thanks: "¡Gracias! Te contactamos en menos de 24 horas laborables.",
+      doneTitle: "Mensaje enviado correctamente",
+      doneText: function (n, e) { return "Gracias, " + n + ". Te hemos enviado un correo de confirmación a " + e + " y te contactamos en menos de 24 horas laborables."; },
+      again: "Enviar otro mensaje",
       name: "Indica tu nombre.", email: "Revisa el email: parece que no es válido.",
       company: "Indica tu empresa o sector para preparar la auditoría.", message: "Cuéntanos brevemente tu caso.",
       consent: "Para enviar, acepta la política de privacidad.", undecided: "No lo tengo claro",
@@ -198,6 +204,24 @@
   function say(text, kind) {
     msg.textContent = text;
     msg.className = "form-msg " + (kind || "");
+  }
+
+  // Confirmació visible després d'enviar: substitueix el formulari fins que es vulgui enviar un altre missatge
+  function showDone(name, email) {
+    var done = document.createElement("div");
+    done.className = "form-done";
+    done.setAttribute("role", "status");
+    done.tabIndex = -1;
+    var icon = document.createElement("div"); icon.className = "form-done-icon"; icon.setAttribute("aria-hidden", "true"); icon.textContent = "✓";
+    var h = document.createElement("h3"); h.textContent = TXT.doneTitle;
+    var p = document.createElement("p"); p.textContent = TXT.doneText(name, email);
+    var b = document.createElement("button"); b.type = "button"; b.className = "btn btn-ghost"; b.textContent = TXT.again;
+    b.addEventListener("click", function () { done.remove(); form.hidden = false; form.querySelector("input").focus(); });
+    done.append(icon, h, p, b);
+    form.hidden = true;
+    form.parentNode.insertBefore(done, form.nextSibling);
+    done.scrollIntoView({ behavior: "smooth", block: "center" });
+    done.focus({ preventScroll: true });
   }
 
   form.addEventListener("submit", function (e) {
@@ -218,7 +242,8 @@
       phone: get("phone"),
       company: get("company"),
       service: get("service") || TXT.undecided,
-      message: get("message")
+      message: get("message"),
+      lang: lang
     };
 
     if (!LIVE) { say(TXT.preview, "ok"); return; }
@@ -232,7 +257,8 @@
     }).then(function (res) {
       if (!res.ok) throw new Error(res.status);
       form.reset();
-      say(TXT.thanks, "ok");
+      say("", "");
+      showDone(payload.name, payload.email);
     }).catch(function () {
       say(TXT.error, "err");
     }).finally(function () {
