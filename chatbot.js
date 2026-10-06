@@ -679,7 +679,8 @@
       var payload = {
         name: nv, email: ev, phone: phone.value.trim(), company: cv,
         service: LANG === "es" ? "Asistente web (chatbot)" : "Assistent web (xatbot)",
-        message: said.slice(0, 4000)
+        message: said.slice(0, 4000),
+        lang: userLang(said || "")
       };
 
       if (!LIVE || !WEBHOOK) { f.remove(); reply(T.preview); return; }

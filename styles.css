@@ -309,6 +309,12 @@ ul { margin: 0; padding: 0; list-style: none; }
 .form-msg { grid-column: 1 / -1; font-size: 0.92rem; min-height: 1.4em; }
 .form-msg.ok { color: var(--teal); }
 .form-msg.err { color: var(--warn); }
+.form[hidden] { display: none; }
+.form-done { background: var(--surface); border: 1px solid var(--teal); border-radius: var(--radius-lg); padding: clamp(22px, 3vw, 34px); text-align: center; display: grid; justify-items: center; gap: 12px; }
+.form-done:focus { outline: none; }
+.form-done-icon { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; font-size: 1.6rem; font-weight: 700; color: var(--bg); background: var(--teal); }
+.form-done h3 { margin: 0; font-size: var(--step-1); }
+.form-done p { margin: 0; color: var(--fg-soft); max-width: 46ch; }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 
 /* Pie */
