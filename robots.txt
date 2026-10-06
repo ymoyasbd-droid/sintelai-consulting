@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: /crm/
 Allow: /
-Sitemap: https://www.sintelai.es/sitemap.xml
+Sitemap: https://sintelai.es/sitemap.xml
