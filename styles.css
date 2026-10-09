@@ -416,3 +416,10 @@ body.at-end .sb-launch { padding: 10px; }
 .scroll-nav button:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
 .scroll-nav button[hidden] { display: none; }
 @media (max-width: 560px) { .scroll-nav { right: 20px; bottom: calc(80px + env(safe-area-inset-bottom, 0px)); } .scroll-nav button { width: 40px; height: 40px; } }
+
+/* Descarga del catálogo y enlaces de WhatsApp */
+.catalog-dl { margin-top: 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
+.catalog-dl span { color: var(--fg-muted); font-size: 0.88rem; }
+.wa-link { font-weight: 600; font-size: 0.92rem; color: var(--teal); }
+.pack .wa-link { margin-top: -6px; }
+.wa-line { margin: 12px 0 0 !important; }
