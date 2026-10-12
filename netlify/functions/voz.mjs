@@ -4,12 +4,14 @@
    Variables de entorno (Netlify > Site configuration > Environment variables):
      ELEVENLABS_API_KEY     clave de ElevenLabs (obligatoria)
      ELEVENLABS_VOICE_ID    ID de la voz elegida en ElevenLabs (obligatoria)
-     ELEVENLABS_TTS_MODEL   opcional, por defecto eleven_v3 (es el modelo que incluye catalán)
+     ELEVENLABS_TTS_MODEL   opcional, modelo para catalán; por defecto eleven_v3 (es el modelo que incluye catalán)
+     ELEVENLABS_TTS_MODEL_ES opcional, modelo para castellano; por defecto eleven_flash_v2_5 (el más rápido)
      ELEVENLABS_STT_MODEL   opcional, por defecto scribe_v2
 
    Rutas:
      GET  ?a=ping   comprueba que la voz está configurada y, si no, lista las variables que faltan (el widget solo muestra los botones si ok es true)
-     POST ?a=tts    cuerpo JSON {"text": "..."}  ->  audio/mpeg
+     GET  ?a=tts&l=ca|es&t=texto  ->  audio/mpeg en streaming (lo usa el botón Escuchar; respuesta cacheada en la CDN)
+     POST ?a=tts    cuerpo JSON {"text": "...", "lang": "ca|es"}  ->  audio/mpeg (compatibilidad)
      POST ?a=stt    cuerpo = audio grabado       ->  JSON {"text": "...", "lang": "ca"}
 
    La clave nunca llega al navegador. */
@@ -27,6 +29,31 @@ function json(status, obj) {
     status,
     headers: { "Content-Type": "application/json", "Cache-Control": "no-store" }
   });
+}
+
+// El <audio> del navegador no envía Origin en un GET: se acepta si la petición viene de la propia web
+function sameSite(req) {
+  if (ORIGINS.test(req.headers.get("origin") || "")) return true;
+  if ((req.headers.get("sec-fetch-site") || "") === "same-origin") return true;
+  try { return ORIGINS.test(new URL(req.headers.get("referer") || "").origin); } catch { return false; }
+}
+
+// Pide el audio en streaming para que empiece a sonar antes. Si el modelo no admite streaming, se pide entero.
+async function tts(key, voice, text, lang) {
+  const model = lang === "es"
+    ? (process.env.ELEVENLABS_TTS_MODEL_ES || "eleven_flash_v2_5")
+    : (process.env.ELEVENLABS_TTS_MODEL || "eleven_v3");
+  const call = (path) => fetch(`${API}/text-to-speech/${encodeURIComponent(voice)}${path}?output_format=mp3_44100_128`, {
+    method: "POST",
+    headers: { "xi-api-key": key, "Content-Type": "application/json" },
+    body: JSON.stringify({ text, model_id: model })
+  });
+  let r = await call("/stream");
+  if (!r.ok && r.status !== 401 && r.status !== 429) {
+    console.error("TTS stream", model, r.status, (await r.text()).slice(0, 300));
+    r = await call("");
+  }
+  return r;
 }
 
 function limited(ip) {
@@ -51,8 +78,9 @@ export default async (req, context) => {
     return json(200, { ok: missing.length === 0, missing });   // solo nombres, nunca valores
   }
 
-  if (req.method !== "POST") return json(405, { error: "method" });
-  if (!ORIGINS.test(req.headers.get("origin") || "")) return json(403, { error: "origin" });
+  const isGetTts = req.method === "GET" && action === "tts";
+  if (req.method !== "POST" && !isGetTts) return json(405, { error: "method" });
+  if (!sameSite(req)) return json(403, { error: "origin" });
   if (!key || !voice) return json(503, { error: "not_configured" });
 
   const ip = (context && context.ip) || req.headers.get("x-nf-client-connection-ip") || "anon";
@@ -60,20 +88,24 @@ export default async (req, context) => {
 
   try {
     if (action === "tts") {
-      const body = await req.json().catch(() => null);
-      const text = String((body && body.text) || "").replace(/\s+/g, " ").trim().slice(0, MAX_TEXT);
+      const params = new URL(req.url).searchParams;
+      const body = isGetTts ? null : await req.json().catch(() => null);
+      const raw = isGetTts ? params.get("t") : body && body.text;
+      const lang = (isGetTts ? params.get("l") : body && body.lang) === "es" ? "es" : "ca";
+      const text = String(raw || "").replace(/\s+/g, " ").trim().slice(0, MAX_TEXT);
       if (!text) return json(400, { error: "text" });
 
-      const r = await fetch(`${API}/text-to-speech/${encodeURIComponent(voice)}?output_format=mp3_44100_128`, {
-        method: "POST",
-        headers: { "xi-api-key": key, "Content-Type": "application/json" },
-        body: JSON.stringify({ text, model_id: process.env.ELEVENLABS_TTS_MODEL || "eleven_v3" })
-      });
+      const r = await tts(key, voice, text, lang);
       if (!r.ok) {
         console.error("TTS", r.status, (await r.text()).slice(0, 300));
         return json(502, { error: "tts" });
       }
-      return new Response(r.body, { status: 200, headers: { "Content-Type": "audio/mpeg", "Cache-Control": "no-store" } });
+      // Mismo texto = mismo audio: la CDN de Netlify lo guarda y la siguiente vez sale al instante y sin gastar crédito.
+      // Cada despliegue vacía esta caché (por ejemplo, al cambiar de voz).
+      const cache = isGetTts
+        ? { "Cache-Control": "public, max-age=86400", "Netlify-CDN-Cache-Control": "public, durable, max-age=2592000" }
+        : { "Cache-Control": "no-store" };
+      return new Response(r.body, { status: 200, headers: { "Content-Type": "audio/mpeg", ...cache } });
     }
 
     if (action === "stt") {

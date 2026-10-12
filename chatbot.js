@@ -489,35 +489,31 @@
     var b = el("button", "sb-listen");
     b.type = "button";
     setListen(b, "idle");
-    var url = null;   // l'àudio es genera un sol cop per missatge
+    // L'àudio arriba en streaming: comença a sonar mentre es genera. Es crea un sol cop per missatge.
+    var src = VOICE + "?a=tts&l=" + userLang(String(text)) + "&t=" + encodeURIComponent(String(text).slice(0, 1000));
+    var a = null;
     b.addEventListener("click", function () {
       if (playerBtn === b) { stopPlayback(); return; }
       stopPlayback();
-      var play = function () {
-        stopPlayback();
-        var a = new Audio(url);
-        player = a; playerBtn = b;
-        setListen(b, "playing");
-        a.onended = function () { if (playerBtn === b) { player = null; playerBtn = null; } setListen(b, "idle"); };
-        a.onerror = function () { stopPlayback(); setListen(b, "idle"); note(T.voiceError); };
-        a.play().catch(function () { stopPlayback(); });
+      if (!a) {
+        a = new Audio();
+        a.preload = "auto";
+        a.src = src;
+      } else {
+        a.currentTime = 0;
+      }
+      player = a; playerBtn = b;
+      setListen(b, a.readyState >= 3 ? "playing" : "loading");
+      a.onplaying = function () { if (playerBtn === b) setListen(b, "playing"); };
+      a.onended = function () { if (playerBtn === b) { player = null; playerBtn = null; } setListen(b, "idle"); };
+      a.onerror = function () {
+        if (window.console) console.warn("Veu no disponible");
+        a = null;   // es tornarà a demanar al següent clic
+        stopPlayback(); setListen(b, "idle"); note(T.voiceError);
       };
-      if (url) return play();
-      setListen(b, "loading");
-      fetch(VOICE + "?a=tts", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text: String(text).slice(0, 1000) })
-      }).then(function (r) {
-        if (!r.ok) throw new Error("HTTP " + r.status);
-        return r.blob();
-      }).then(function (blob) {
-        url = URL.createObjectURL(blob);
-        play();
-      }).catch(function (err) {
-        if (window.console) console.warn("Veu no disponible:", err && err.message);
-        setListen(b, "idle");
-        note(T.voiceError);
+      a.play().catch(function (err) {
+        if (err && err.name === "AbortError") return;   // l'usuari l'ha aturat
+        stopPlayback();
       });
     });
     msg.appendChild(b);
