@@ -324,7 +324,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .footer-links { display: flex; flex-wrap: wrap; gap: 18px; }
 .footer-links a { color: var(--fg-muted); }
 .footer-social { display: flex; gap: 14px; }
-.footer-social a { color: var(--fg-muted); display: inline-flex; padding: 6px; border-radius: 8px; }
+.footer-social a { color: var(--teal); display: inline-flex; padding: 6px; border-radius: 8px; }
 .footer-social a:hover, .footer-social a:focus-visible { color: var(--fg); }
 
 /* WhatsApp flotante */
