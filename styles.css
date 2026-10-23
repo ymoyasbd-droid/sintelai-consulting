@@ -154,6 +154,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .st.free { color: var(--fg-muted); border-style: dashed; }
 .st.pend { color: var(--warn); border-color: var(--warn); }
 .demo-foot { font-family: var(--font-mono); font-size: 0.72rem; color: var(--fg-muted); }
+.demo-foot a { color: var(--teal); }
 .chat-head { display: flex; align-items: center; gap: 12px; padding: 14px 18px; border-bottom: 1px solid var(--line); }
 .chat-avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--teal), var(--sky)); display: grid; place-items: center; color: var(--on-teal); font-family: var(--font-display); font-weight: 800; }
 .chat-head strong { display: block; font-size: 0.95rem; }
