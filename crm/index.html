@@ -1,17 +1,17 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>CRM interno | Sintel AI</title>
-  <meta name="robots" content="noindex, nofollow">
-  <link rel="icon" href="../favicon.ico">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
-  <link rel="stylesheet" href="../styles.css">
-  <link rel="stylesheet" href="crm.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>CRM interno | Sintel AI</title>
+<link rel="icon" href="../favicon.ico">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap">
+<link rel="stylesheet" href="crm.css">
 </head>
 <body class="crm">
-<!--BODY-START-->
+
+<!-- Acceso -->
 <div id="crm-login" class="crm-login" hidden>
   <form class="crm-card" id="login-form" novalidate>
     <img src="../assets/logo-sintel-ai.png" alt="Sintel AI" width="860" height="340">
@@ -23,43 +23,74 @@
   </form>
 </div>
 
+<!-- Sin permisos -->
 <div id="crm-denied" class="crm-login" hidden>
   <div class="crm-card"><p>Tu cuenta no tiene acceso al CRM.</p><button class="btn btn-ghost" type="button" data-logout>Salir</button></div>
 </div>
 
+<!-- Aplicación -->
 <div id="crm-app" hidden>
   <header class="crm-top">
     <div class="crm-top-in">
-      <img src="../assets/logo-sintel-ai.png" alt="Sintel AI" width="860" height="340">
+      <img class="crm-logo" src="../assets/logo-sintel-ai.png" alt="Sintel AI" width="860" height="340">
       <span class="eyebrow">CRM</span>
       <span class="crm-demo" id="demo-flag" hidden>Vista previa con contactos de ejemplo</span>
-      <button class="btn btn-ghost crm-out" type="button" data-logout>Salir</button>
+      <div class="crm-search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="q" type="search" placeholder="Buscar por nombre, email, teléfono o empresa" aria-label="Buscar">
+      </div>
+      <div class="crm-actions">
+        <div class="seg" role="group" aria-label="Vista">
+          <button type="button" class="seg-b is-on" data-view="board" aria-pressed="true">Tablero</button>
+          <button type="button" class="seg-b" data-view="list" aria-pressed="false">Lista</button>
+        </div>
+        <button class="btn btn-ghost" type="button" id="btn-theme" aria-pressed="false">Modo oscuro</button>
+        <button class="btn btn-ghost" type="button" id="btn-csv">Exportar CSV</button>
+        <button class="btn btn-ghost" type="button" data-logout>Salir</button>
+      </div>
     </div>
   </header>
 
   <main class="crm-main">
     <section class="crm-kpis" aria-label="Resumen">
-      <div><span>Contactos</span><strong id="k-total">0</strong></div>
-      <div><span>Nuevos sin atender</span><strong id="k-new">0</strong></div>
-      <div><span>Desde el asistente</span><strong id="k-bot">0</strong></div>
-      <div><span>Cerrados</span><strong id="k-won">0</strong></div>
+      <div class="kpi k-total"><i aria-hidden="true"></i><span>Contactos</span><strong id="k-total">0</strong></div>
+      <div class="kpi k-new"><i aria-hidden="true"></i><span>Nuevos sin atender</span><strong id="k-new">0</strong></div>
+      <div class="kpi k-bot"><i aria-hidden="true"></i><span>Desde el asistente</span><strong id="k-bot">0</strong></div>
+      <div class="kpi k-hot"><i aria-hidden="true"></i><span>Prioridad alta</span><strong id="k-hot">0</strong></div>
+      <div class="kpi k-won"><i aria-hidden="true"></i><span>Cerrados</span><strong id="k-won">0</strong><em id="k-rate"></em></div>
     </section>
 
-    <div class="crm-filters">
-      <input id="q" type="search" placeholder="Buscar por nombre, email, teléfono o empresa" aria-label="Buscar">
-      <select id="f-service" aria-label="Filtrar por servicio"><option value="">Todos los servicios</option></select>
-      <button class="btn btn-ghost" type="button" id="reload">Actualizar</button>
+    <section class="crm-insights" aria-label="Gráficos">
+      <article class="panel"><h2>Embudo</h2><div id="ch-funnel"></div></article>
+      <article class="panel"><h2>Origen</h2><div id="ch-origin" class="donut-wrap"></div></article>
+      <article class="panel"><h2>Prioridad</h2><div id="ch-tier"></div></article>
+    </section>
+
+    <div class="crm-filters" role="group" aria-label="Filtros">
+      <select id="f-service" aria-label="Filtrar por segmento o servicio"><option value="">Todos los segmentos</option></select>
+      <select id="f-source" aria-label="Filtrar por origen"><option value="">Todos los orígenes</option></select>
+      <div class="chips" id="f-tier" role="group" aria-label="Prioridad">
+        <button type="button" class="chip is-on" data-tier="">Todas</button>
+        <button type="button" class="chip t-hi" data-tier="hi">Alta</button>
+        <button type="button" class="chip t-mid" data-tier="mid">Media</button>
+        <button type="button" class="chip t-lo" data-tier="lo">Baja</button>
+      </div>
+      <label class="chk"><input type="checkbox" id="f-new"> Solo sin atender</label>
+      <button class="btn btn-ghost" type="button" id="btn-reload">Actualizar</button>
+      <span class="count" id="f-count" aria-live="polite"></span>
     </div>
 
-    <div class="board" id="board" aria-live="polite"></div>
+    <section id="board" class="board" aria-label="Tablero de contactos"></section>
+    <section id="list" class="list" aria-label="Lista de contactos" hidden></section>
+    <p class="empty" id="empty" hidden>No hay contactos que coincidan con los filtros.</p>
   </main>
 
-  <aside class="drawer" id="drawer" hidden aria-label="Ficha del contacto">
-    <div class="drawer-in" id="drawer-in"></div>
-  </aside>
-  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <div class="scrim" id="scrim" hidden></div>
+  <aside class="drawer" id="drawer" aria-hidden="true" aria-label="Ficha del contacto" tabindex="-1"></aside>
 </div>
-<!--BODY-END-->
-<script src="crm.js" defer></script>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<script src="crm.js"></script>
 </body>
 </html>
