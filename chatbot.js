@@ -28,9 +28,9 @@
   /* ---------- Textos (respostes oficials de la base de coneixement) ---------- */
   var ALL = {
     ca: {
-      launcher: "Parla amb l'assistent", title: "Assistent Sintel AI", status: "Respon a l'instant",
+      launcher: "Parla amb l'assistent", title: "Assistent Sintel AI Consulting", status: "Respon a l'instant",
       close: "Tancar", placeholder: "Escriu la teva pregunta…", send: "Enviar",
-      hello: "Hola! Sóc l'assistent de Sintel AI. T'ajudo a veure com la IA pot atendre i captar clients per al teu negoci. Per on vols començar?",
+      hello: "Hola! Sóc l'assistent de Sintel AI Consulting. T'ajudo a veure com la IA pot atendre i captar clients per al teu negoci. Per on vols començar?",
       quick: [
         ["leads", "Vull captar més clients"], ["citas", "Recordatoris de cita"],
         ["auto", "Automatitzar tasques"], ["precio", "Quant costa?"], ["datos", "Deixar les meves dades"]
@@ -39,7 +39,7 @@
         leads: "Amb un assistent al teu web atens les visites a qualsevol hora: respon dubtes, recull nom, telèfon i motiu de la consulta i t'avisa a l'instant. Així no perds cap client fora d'horari. A què es dedica el teu negoci?",
         citas: "Per a negocis amb cita prèvia enviem confirmació per WhatsApp, un recordatori 24 h abans amb botons per confirmar o canviar, i un avís 2 h abans. Així ningú no oblida la seva cita. Vols que ho revisem per al teu cas a l'auditoria gratuïta?",
         auto: "Connectem el teu CRM, el programa de gestió i el correu per generar pressupostos en minuts, agilitzar la facturació i eliminar tasques manuals. Quina tasca us treu més temps?",
-        precio: "A Sintel AI no treballem amb paquets tancats perquè cada negoci és únic. Comencem sempre amb una auditoria gratuïta de 30 minuts i, després de veure les eines que ja fas servir, et preparem un pressupost a mida i sense compromís.",
+        precio: "A Sintel AI Consulting no treballem amb paquets tancats perquè cada negoci és únic. Comencem sempre amb una auditoria gratuïta de 30 minuts i, després de veure les eines que ja fas servir, et preparem un pressupost a mida i sense compromís.",
         plazo: "Depèn de la solució: l'assistent web es lliura en 5 dies hàbils, l'Assistent Pro en 10 i la Suite Premium amb landing i cites en 15.",
         datos_seg: "Treballem exclusivament amb models d'IA empresarials que compleixen el RGPD. La informació de la teva empresa mai no s'utilitza per entrenar models públics.",
         tecnica: "El teu equip no necessita saber de tecnologia. Ens encarreguem de tota la part tècnica i treballareu amb eines que ja coneixeu, com WhatsApp o el correu.",
@@ -58,7 +58,7 @@
       thanks: function (n) { return "Gràcies, " + n + "! Hem rebut les teves dades i et contactem en menys de 24 hores laborables."; },
       preview: "Vista prèvia: les dades no s'envien des d'aquí. A sintelai.es arribaran al teu escenari de Make.",
       sendError: "No s'ha pogut enviar. Escriu-nos a comercial@sintelai.es o al WhatsApp +34 614 056 307.",
-      typing: "Escrivint…", privacyNote: "Respostes generades amb IA a partir de la informació oficial de Sintel AI. No hi escriguis dades personals: fes servir el formulari.",
+      typing: "Escrivint…", privacyNote: "Respostes generades amb IA a partir de la informació oficial de Sintel AI Consulting. No hi escriguis dades personals: fes servir el formulari.",
       mic: "Dictar amb la veu", micStop: "Aturar i enviar", listen: "Escoltar", stopListen: "Aturar", loadingVoice: "Carregant…",
       transcribing: "Transcrivint…", micGo: "Continuar", micCancel: "Ara no",
       micNote: "Per escriure amb la veu, l'àudio s'envia a un proveïdor de veu només per convertir-lo en text. Més informació a la <a href=\"{p}\" target=\"_blank\" rel=\"noopener\">política de privacitat</a>.",
@@ -69,9 +69,9 @@
       leadIn: "Perfecte! Omple aquestes dades i una persona de l'equip et contactarà. És imprescindible acceptar la política de privacitat."
     },
     es: {
-      launcher: "Habla con el asistente", title: "Asistente Sintel AI", status: "Responde al instante",
+      launcher: "Habla con el asistente", title: "Asistente Sintel AI Consulting", status: "Responde al instante",
       close: "Cerrar", placeholder: "Escribe tu pregunta…", send: "Enviar",
-      hello: "¡Hola! Soy el asistente de Sintel AI. Te ayudo a ver cómo la IA puede atender y captar clientes para tu negocio. ¿Por dónde quieres empezar?",
+      hello: "¡Hola! Soy el asistente de Sintel AI Consulting. Te ayudo a ver cómo la IA puede atender y captar clientes para tu negocio. ¿Por dónde quieres empezar?",
       quick: [
         ["leads", "Quiero captar más clientes"], ["citas", "Recordatorios de cita"],
         ["auto", "Automatizar tareas"], ["precio", "¿Cuánto cuesta?"], ["datos", "Dejar mis datos"]
@@ -80,7 +80,7 @@
         leads: "Con un asistente en tu web atiendes las visitas a cualquier hora: responde dudas, recoge nombre, teléfono y motivo de la consulta y te avisa al momento. Así no pierdes ningún cliente fuera de horario. ¿A qué se dedica tu negocio?",
         citas: "Para negocios con cita previa enviamos confirmación por WhatsApp, un recordatorio 24 h antes con botones para confirmar o cambiar, y un aviso 2 h antes. Así nadie olvida su cita. ¿Quieres que lo revisemos para tu caso en la auditoría gratuita?",
         auto: "Conectamos tu CRM, tu programa de gestión y tu correo para generar presupuestos en minutos, agilizar la facturación y eliminar tareas manuales. ¿Qué tarea os quita más tiempo?",
-        precio: "En Sintel AI no trabajamos con paquetes cerrados porque cada negocio es único. Empezamos siempre con una auditoría gratuita de 30 minutos y, tras ver las herramientas que ya usas, te preparamos un presupuesto a medida y sin compromiso.",
+        precio: "En Sintel AI Consulting no trabajamos con paquetes cerrados porque cada negocio es único. Empezamos siempre con una auditoría gratuita de 30 minutos y, tras ver las herramientas que ya usas, te preparamos un presupuesto a medida y sin compromiso.",
         plazo: "Depende de la solución: el asistente web se entrega en 5 días hábiles, el Asistente Pro en 10 y la Suite Premium con landing y citas en 15.",
         datos_seg: "Trabajamos exclusivamente con modelos de IA empresariales que cumplen el RGPD. La información de tu empresa nunca se usa para entrenar modelos públicos.",
         tecnica: "Tu equipo no necesita saber de tecnología. Nos encargamos de toda la parte técnica y trabajaréis con herramientas que ya conocéis, como WhatsApp o el correo.",
@@ -99,7 +99,7 @@
       thanks: function (n) { return "¡Gracias, " + n + "! Hemos recibido tus datos y te contactamos en menos de 24 horas laborables."; },
       preview: "Vista previa: los datos no se envían desde aquí. En sintelai.es llegarán a tu escenario de Make.",
       sendError: "No se ha podido enviar. Escríbenos a comercial@sintelai.es o al WhatsApp +34 614 056 307.",
-      typing: "Escribiendo…", privacyNote: "Respuestas generadas con IA a partir de la información oficial de Sintel AI. No escribas datos personales aquí: usa el formulario.",
+      typing: "Escribiendo…", privacyNote: "Respuestas generadas con IA a partir de la información oficial de Sintel AI Consulting. No escribas datos personales aquí: usa el formulario.",
       mic: "Dictar por voz", micStop: "Parar y enviar", listen: "Escuchar", stopListen: "Parar", loadingVoice: "Cargando…",
       transcribing: "Transcribiendo…", micGo: "Continuar", micCancel: "Ahora no",
       micNote: "Para escribir con la voz, el audio se envía a un proveedor de voz solo para convertirlo en texto. Más información en la <a href=\"{p}\" target=\"_blank\" rel=\"noopener\">política de privacidad</a>.",
