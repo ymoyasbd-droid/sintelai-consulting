@@ -224,12 +224,15 @@
     done.focus({ preventScroll: true });
   }
 
+  // Antispam: los bots rellenan el formulario en menos de 3 segundos; a las personas les cuesta más
+  var openedAt = Date.now();
+
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     var d = new FormData(form);
     var get = function (k) { return String(d.get(k) || "").trim(); };
 
-    if (get("website")) { say(TXT.thanks, "ok"); return; }
+    if (get("website") || Date.now() - openedAt < 3000) { say(TXT.thanks, "ok"); return; }
     if (!get("name")) return say(TXT.name, "err");
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(get("email"))) return say(TXT.email, "err");
     if (!get("company")) return say(TXT.company, "err");
