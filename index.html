@@ -22,9 +22,9 @@
   <meta name="twitter:description" content="Assistents intel·ligents que atenen, agenden cites i capten clients les 24 hores. Auditoria IA gratuïta de 30 minuts.">
   <meta name="twitter:image" content="https://sintelai.es/assets/2026_10_04_og_image.jpg">
   <link rel="icon" href="/favicon.ico">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="preload" href="/assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
   <script type="application/ld+json">
   {
@@ -46,7 +46,7 @@
 <header class="site-header">
   <div class="wrap">
     <a class="brand" href="#inici" aria-label="Sintel AI, inici">
-      <img src="assets/logo-sintel-ai.png" alt="Sintel AI · Intel·ligència Artificial" width="860" height="340">
+      <img src="assets/logo-sintel-ai-168.webp" srcset="assets/logo-sintel-ai-168.webp 1x, assets/logo-sintel-ai-336.webp 2x" alt="Sintel AI · Intel·ligència Artificial" width="168" height="66">
     </a>
     <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="nav" data-open="Tancar" data-closed="Menú">Menú</button>
     <nav class="nav" id="nav" aria-label="Principal">
@@ -95,11 +95,11 @@
         </div>
         <div class="demo-side">
           <section class="panel">
-            <h4>Avís a l'equip · grup de WhatsApp</h4>
+            <p class="panel-title">Avís a l'equip · grup de WhatsApp</p>
             <div id="demo-wa" aria-live="polite"><p class="panel-empty">Quan la pacient respon, el teu equip ho veu aquí sense haver de trucar.</p></div>
           </section>
           <section class="panel">
-            <h4>Agenda de la clínica</h4>
+            <p class="panel-title">Agenda de la clínica</p>
             <ul class="agenda" id="demo-agenda">
               <li><time>Dc 10:30</time><span>Marta</span><b class="st pend">Pendent</b></li>
               <li><time>Dc 11:00</time><span>Jordi</span><b class="st ok">Confirmada</b></li>
@@ -157,7 +157,7 @@
         <article class="service">
           <div class="icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
           <h3>Assistents i xatbots IA</h3>
-          <p>Atenció al client 24/7, captació de contactes i reserva automàtica de cites, al teu web i connectat amb WhatsApp. <a href="/assistent-ia-atencio-client/">Més informació</a></p>
+          <p>Atenció al client 24/7, captació de contactes i reserva automàtica de cites, al teu web i connectat amb WhatsApp. <a href="/assistent-ia-atencio-client/">Més informació sobre l'assistent d'IA d'atenció al client</a></p>
         </article>
         <article class="service">
           <div class="icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v6H4zM14 14h6v6h-6zM10 7h4a3 3 0 0 1 3 3v4M14 17h-4a3 3 0 0 1-3-3v-4"/></svg></div>
@@ -423,7 +423,7 @@
               <li>Assistent d'IA que atén els pacients 24/7</li>
             </ul>
             <div class="tags"><span class="chip">Sector salut</span><span class="chip">Cites</span><span class="chip">Xatbot IA</span></div>
-            <a class="project-link" href="https://sinteliacentres-medics.netlify.app/" target="_blank" rel="noopener">Veure la demo →</a>
+            <a class="project-link" href="https://sinteliacentres-medics.netlify.app/" target="_blank" rel="noopener">Veure la demo<span class="sr-only"> de Sintel AI Centres Mèdics</span> <span aria-hidden="true">→</span></a>
           </div>
         </article>
 
@@ -442,7 +442,7 @@
               <li>S'instal·la copiant una línia de codi al teu web</li>
             </ul>
             <div class="tags"><span class="chip">Xatbot IA</span><span class="chip">Captació</span></div>
-            <a class="project-link" href="https://web-ai-assistant.lovable.app" target="_blank" rel="noopener">Veure la demo →</a>
+            <a class="project-link" href="https://web-ai-assistant.lovable.app" target="_blank" rel="noopener">Veure la demo<span class="sr-only"> de AsistenteIA</span> <span aria-hidden="true">→</span></a>
           </div>
         </article>
 
@@ -461,7 +461,7 @@
               <li>Classifica les oportunitats per estat i mostra mètriques amb les teves pròpies dades</li>
             </ul>
             <div class="tags"><span class="chip">Prospecció</span><span class="chip">Propostes</span><span class="chip">B2B</span></div>
-            <a class="project-link" href="https://captoleadsb2b.lovable.app/" target="_blank" rel="noopener">Veure la demo →</a>
+            <a class="project-link" href="https://captoleadsb2b.lovable.app/" target="_blank" rel="noopener">Veure la demo<span class="sr-only"> de Capto Leads B2B</span> <span aria-hidden="true">→</span></a>
           </div>
         </article>
 
@@ -584,7 +584,7 @@
 
 <footer class="site-footer">
   <div class="wrap">
-    <img src="assets/logo-sintel-ai.png" alt="Sintel AI" width="860" height="340" loading="lazy">
+    <img src="assets/logo-sintel-ai-168.webp" srcset="assets/logo-sintel-ai-168.webp 1x, assets/logo-sintel-ai-336.webp 2x" alt="Sintel AI" width="168" height="66" loading="lazy">
     <p>© <span id="year">2026</span> Sintel AI Consulting</p>
     <nav class="footer-social" aria-label="Xarxes socials">
       <a href="https://www.instagram.com/sintelaies/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>

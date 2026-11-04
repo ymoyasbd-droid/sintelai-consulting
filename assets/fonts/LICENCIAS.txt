@@ -1,0 +1,9 @@
+Fuentes autohospedadas en sintelai.es (descargadas de Google Fonts el 04/11/2026, subconjuntos latin y latin-ext)
+
+- Inter · Copyright 2016 The Inter Project Authors (https://github.com/rsms/inter)
+- Outfit · Copyright 2021 The Outfit Project Authors (https://github.com/Outfitio/Outfit-Fonts)
+- JetBrains Mono · Copyright 2020 The JetBrains Mono Project Authors (https://github.com/JetBrains/JetBrainsMono)
+
+Las tres se distribuyen en Google Fonts con la licencia SIL Open Font License 1.1, que permite usarlas,
+alojarlas y redistribuirlas, también con fines comerciales.
+Texto de la licencia: https://openfontlicense.org/open-font-license-official-text/

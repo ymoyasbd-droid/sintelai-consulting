@@ -21,9 +21,9 @@
   <meta name="twitter:description" content="Asistentes inteligentes que atienden, agendan citas y captan clientes las 24 horas. Auditoría IA gratuita de 30 minutos.">
   <meta name="twitter:image" content="https://sintelai.es/assets/2026_10_04_og_image.jpg">
   <link rel="icon" href="../favicon.ico">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="preload" href="/assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../styles.css">
   <script type="application/ld+json">
   {
@@ -45,7 +45,7 @@
 <header class="site-header">
   <div class="wrap">
     <a class="brand" href="#inicio" aria-label="Sintel AI, inicio">
-      <img src="../assets/logo-sintel-ai.png" alt="Sintel AI · Inteligencia Artificial" width="860" height="340">
+      <img src="../assets/logo-sintel-ai-168.webp" srcset="../assets/logo-sintel-ai-168.webp 1x, ../assets/logo-sintel-ai-336.webp 2x" alt="Sintel AI · Inteligencia Artificial" width="168" height="66">
     </a>
     <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="nav" data-open="Cerrar">Menú</button>
     <nav class="nav" id="nav" aria-label="Principal">
@@ -94,11 +94,11 @@
         </div>
         <div class="demo-side">
           <section class="panel">
-            <h4>Aviso al equipo · grupo de WhatsApp</h4>
+            <p class="panel-title">Aviso al equipo · grupo de WhatsApp</p>
             <div id="demo-wa" aria-live="polite"><p class="panel-empty">Cuando la paciente responde, tu equipo lo ve aquí sin tener que llamar.</p></div>
           </section>
           <section class="panel">
-            <h4>Agenda de la clínica</h4>
+            <p class="panel-title">Agenda de la clínica</p>
             <ul class="agenda" id="demo-agenda">
               <li><time>Mi 10:30</time><span>Marta</span><b class="st pend">Pendiente</b></li>
               <li><time>Mi 11:00</time><span>Jordi</span><b class="st ok">Confirmada</b></li>
@@ -156,7 +156,7 @@
         <article class="service">
           <div class="icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
           <h3>Asistentes y chatbots IA</h3>
-          <p>Atención al cliente 24/7, captación de contactos y reserva automática de citas, en tu web y conectado con WhatsApp. <a href="/es/asistente-ia-atencion-cliente/">Más información</a></p>
+          <p>Atención al cliente 24/7, captación de contactos y reserva automática de citas, en tu web y conectado con WhatsApp. <a href="/es/asistente-ia-atencion-cliente/">Más información sobre el asistente de IA de atención al cliente</a></p>
         </article>
         <article class="service">
           <div class="icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v6H4zM14 14h6v6h-6zM10 7h4a3 3 0 0 1 3 3v4M14 17h-4a3 3 0 0 1-3-3v-4"/></svg></div>
@@ -422,7 +422,7 @@
               <li>Asistente de IA que atiende a los pacientes 24/7</li>
             </ul>
             <div class="tags"><span class="chip">Sector salud</span><span class="chip">Citas</span><span class="chip">Chatbot IA</span></div>
-            <a class="project-link" href="https://sinteliacentres-medics.netlify.app/" target="_blank" rel="noopener">Ver la demo →</a>
+            <a class="project-link" href="https://sinteliacentres-medics.netlify.app/" target="_blank" rel="noopener">Ver la demo<span class="sr-only"> de Sintel AI Centros Médicos</span> <span aria-hidden="true">→</span></a>
           </div>
         </article>
 
@@ -441,7 +441,7 @@
               <li>Se instala copiando una línea de código en tu web</li>
             </ul>
             <div class="tags"><span class="chip">Chatbot IA</span><span class="chip">Captación</span></div>
-            <a class="project-link" href="https://web-ai-assistant.lovable.app" target="_blank" rel="noopener">Ver la demo →</a>
+            <a class="project-link" href="https://web-ai-assistant.lovable.app" target="_blank" rel="noopener">Ver la demo<span class="sr-only"> de AsistenteIA</span> <span aria-hidden="true">→</span></a>
           </div>
         </article>
 
@@ -460,7 +460,7 @@
               <li>Clasifica las oportunidades por estado y muestra métricas con tus propios datos</li>
             </ul>
             <div class="tags"><span class="chip">Prospección</span><span class="chip">Propuestas</span><span class="chip">B2B</span></div>
-            <a class="project-link" href="https://captoleadsb2b.lovable.app/" target="_blank" rel="noopener">Ver la demo →</a>
+            <a class="project-link" href="https://captoleadsb2b.lovable.app/" target="_blank" rel="noopener">Ver la demo<span class="sr-only"> de Capto Leads B2B</span> <span aria-hidden="true">→</span></a>
           </div>
         </article>
 
@@ -583,7 +583,7 @@
 
 <footer class="site-footer">
   <div class="wrap">
-    <img src="../assets/logo-sintel-ai.png" alt="Sintel AI" width="860" height="340" loading="lazy">
+    <img src="../assets/logo-sintel-ai-168.webp" srcset="../assets/logo-sintel-ai-168.webp 1x, ../assets/logo-sintel-ai-336.webp 2x" alt="Sintel AI" width="168" height="66" loading="lazy">
     <p>© <span id="year">2026</span> Sintel AI Consulting</p>
     <nav class="footer-social" aria-label="Redes sociales">
       <a href="https://www.instagram.com/sintelaies/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
