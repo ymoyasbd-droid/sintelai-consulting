@@ -12,7 +12,7 @@
   if (window.__sintelBot) return;
   window.__sintelBot = true;
 
-  var script = document.currentScript || document.querySelector("script[src*='chatbot.js']");
+  var script = document.currentScript || document.querySelector("script[src*='chatbot']");
   var ds = (script && script.dataset) || {};
   var LANG = ds.lang === "es" ? "es" : "ca";
   var ENDPOINT = ds.endpoint || "/.netlify/functions/chat";

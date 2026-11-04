@@ -284,13 +284,28 @@
   var smooth = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
   up.addEventListener("click", function () { window.scrollTo({ top: 0, behavior: smooth }); });
   down.addEventListener("click", function () { window.scrollTo({ top: document.documentElement.scrollHeight, behavior: smooth }); });
-  function update() {
-    var y = window.scrollY, max = document.documentElement.scrollHeight - window.innerHeight;
-    up.hidden = y < 300;
-    down.hidden = y > max - 300;
-    document.body.classList.toggle("at-end", y > max - 260);
+  // Los botones se muestran u ocultan con IntersectionObserver, sin leer scrollY ni scrollHeight:
+  // esa lectura forzaba una redistribución del diseño (PageSpeed: main.js:288).
+  // Marca a 300 px del inicio: «subir» solo aparece cuando ya ha quedado por encima de la pantalla.
+  // Marca al final de la página: «bajar» se oculta a 300 px del final y la clase at-end se pone a 260 px.
+  if (!("IntersectionObserver" in window)) return;
+  function mark(css) {
+    var m = document.createElement("div");
+    m.setAttribute("aria-hidden", "true");
+    m.style.cssText = "pointer-events:none;width:1px;height:1px;" + css;
+    return m;
   }
-  window.addEventListener("scroll", update, { passive: true });
-  window.addEventListener("resize", update);
-  update();
+  var topMark = mark("position:absolute;top:300px;left:0;");
+  var endMark = mark("margin-top:-1px;");
+  document.body.insertBefore(topMark, document.body.firstChild);
+  document.body.appendChild(endMark);
+  new IntersectionObserver(function (es) {
+    es.forEach(function (e) { up.hidden = e.boundingClientRect.top > 0; });
+  }).observe(topMark);
+  new IntersectionObserver(function (es) {
+    es.forEach(function (e) { down.hidden = e.isIntersecting; });
+  }, { rootMargin: "0px 0px 300px 0px" }).observe(endMark);
+  new IntersectionObserver(function (es) {
+    es.forEach(function (e) { document.body.classList.toggle("at-end", e.isIntersecting); });
+  }, { rootMargin: "0px 0px 260px 0px" }).observe(endMark);
 })();
