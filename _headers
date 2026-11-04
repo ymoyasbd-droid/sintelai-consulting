@@ -1,0 +1,14 @@
+# Cabeceras de seguridad de sintelai.es (Netlify las lee de este archivo en cada despliegue).
+# Si se añade un servicio externo nuevo (otro webhook, un vídeo incrustado, un script de terceros),
+# hay que añadir su dominio a la Content-Security-Policy o el navegador lo bloqueará.
+# - connect-src: webhook de Make (formularios) y Supabase (CRM interno).
+# - style-src / font-src: Google Fonts solo lo usa todavía el CRM interno (/crm/).
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self' https://hook.eu2.make.com https://hrzkluxbtnyhpprcrnob.supabase.co; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests
+  Cross-Origin-Opener-Policy: same-origin
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: microphone=(self), camera=(), geolocation=(), payment=()
+# HSTS: Netlify ya envía Strict-Transport-Security con max-age de 1 año. No se añaden includeSubDomains ni preload
+# hasta confirmar que todos los subdominios de sintelai.es (correo de Arsys incluido) funcionan por HTTPS.
